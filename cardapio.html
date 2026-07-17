@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cardápio — La Chicra Café com Variedades</title>
+  <meta name="description" content="Cardápio completo do La Chicra Café com Variedades. Guará II, Brasília." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ════════════════════════════════════
+       DESIGN SYSTEM
+    ════════════════════════════════════ */
+    :root {
+      --paper:        #0f0f0f;
+      --paper-ruled:  #111111;
+      --paper-dark:   #1a1a1a;
+      --ink:          #ffffff;
+      --ink-mid:      rgba(255,255,255,0.75);
+      --ink-light:    rgba(255,255,255,0.42);
+      --rose:         #E8317A;
+      --rose-light:   rgba(232,49,122,0.45);
+      --caramel:      #E8317A;
+      --caramel-light:#ff6fa8;
+      --mocha:        #000000;
+      --rule-color:   rgba(255,255,255,0.05);
+      --binding:      #E8317A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img  { display: block; max-width: 100%; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: #050505;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(255,255,255,0.025) 27px, rgba(255,255,255,0.025) 28px);
+      min-height: 100vh;
+      padding: 32px 16px 64px;
+    }
+
+    /* ════════════════════════════════════
+       CADERNO / NOTEBOOK WRAPPER
+    ════════════════════════════════════ */
+    .notebook {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 4px 18px 18px 4px;
+      box-shadow:
+        -6px 0 0 0 var(--binding),
+        -12px 0 0 0 rgba(232,49,122,0.25),
+        4px 4px 60px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(232,49,122,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Espiral do caderno */
+    .notebook::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 6px;
+      background: var(--binding);
+      z-index: 20;
+    }
+
+    /* Linha de margem vermelha */
+    .notebook::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 56px; bottom: 0;
+      width: 1.5px;
+      background: rgba(196,112,122,0.35);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Furos do espiral */
+    .spiral {
+      position: absolute;
+      left: -3px;
+      top: 0; bottom: 0;
+      width: 12px;
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    .spiral-ring {
+      position: absolute;
+      left: -1px;
+      width: 14px; height: 14px;
+      border: 2.5px solid #E8317A;
+      border-radius: 50%;
+      background: #050505;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.8), 0 0 6px rgba(232,49,122,0.4);
+    }
+
+    /* ════════════════════════════════════
+       CAPA DO CADERNO
+    ════════════════════════════════════ */
+    .cover {
+      background: #000000;
+      padding: 64px 64px 56px 80px;
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-bottom: 1px solid rgba(232,49,122,0.2);
+    }
+
+    .cover-texture {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(232,49,122,0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(232,49,122,0.07) 0%, transparent 65%);
+    }
+
+    /* Linhas da capa */
+    .cover-lines {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 35px,
+        rgba(255,255,255,0.028) 35px, rgba(255,255,255,0.028) 36px
+      );
+    }
+
+    .cover-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 12px;
+      position: relative; z-index: 2;
+    }
+
+    .cover-title {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+      position: relative; z-index: 2;
+      text-shadow: 0 0 40px rgba(232,49,122,0.3);
+    }
+
+    .cover-title em {
+      color: var(--rose);
+      display: block;
+      text-shadow: 0 0 60px rgba(232,49,122,0.5);
+    }
+
+    .cover-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.45);
+      margin-top: 14px;
+      position: relative; z-index: 2;
+    }
+
+    .cover-address {
+      margin-top: 32px;
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      position: relative; z-index: 2;
+    }
+
+    /* Ícone decorativo capa */
+    .cover-deco {
+      position: absolute;
+      top: 40px; right: 60px;
+      width: 100px; height: 100px;
+      border: 1.5px solid rgba(232,49,122,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+      box-shadow: 0 0 30px rgba(232,49,122,0.1);
+    }
+    .cover-deco svg { width: 52px; height: 52px; }
+
+    /* ════════════════════════════════════
+       ÍNDICE
+    ════════════════════════════════════ */
+    .index-page {
+      padding: 44px 64px 44px 80px;
+      border-bottom: 1px solid rgba(232,49,122,0.15);
+      background: var(--paper-ruled);
+      background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 27px,
+        var(--rule-color) 27px, var(--rule-color) 28px
+      );
+    }
+
+    .index-page h2 {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem; font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--rose);
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+
+    .index-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 40px;
+    }
+
+    .index-item {
+      display: flex; align-items: center; gap: 0;
+    }
+
+    .index-item a {
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem; font-weight: 400;
+      color: var(--ink-mid);
+      transition: color 0.2s;
+      flex: 1;
+    }
+    .index-item a:hover { color: var(--rose); }
+
+    .index-dots {
+      flex: 1;
+      border-bottom: 1.5px dotted rgba(255,255,255,0.12);
+      margin: 0 8px 4px;
+    }
+
+    .index-emoji { font-size: 1rem; margin-right: 8px; }
+
+    /* ════════════════════════════════════
+       SEÇÃO DO CADERNO
+    ════════════════════════════════════ */
+    .nb-section {
+      padding: 48px 64px 48px 80px;
+      border-bottom: 1px solid rgba(232,49,122,0.08);
+      background: var(--paper);
+      background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 27px,
+        var(--rule-color) 27px, var(--rule-color) 28px
+      );
+      position: relative;
+    }
+
+    .nb-section:nth-child(odd)  { background-color: #0f0f0f; }
+    .nb-section:nth-child(even) { background-color: #0c0c0c; }
+
+    /* Tab lateral da seção */
+    .section-tab {
+      position: absolute;
+      top: 48px; right: 0;
+      background: var(--rose);
+      color: #fff;
+      padding: 6px 12px 6px 14px;
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      border-radius: 4px 0 0 4px;
+      writing-mode: horizontal-tb;
+      font-family: 'Jost', sans-serif;
+      box-shadow: -4px 0 16px rgba(232,49,122,0.35);
+    }
+
+    .nb-section-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem; font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .nb-section-title .title-icon { font-size: 1.6rem; }
+
+    .nb-section-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; font-style: italic;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 32px;
+    }
+
+    /* ════════════════════════════════════
+       SUBSECÇÃO
+    ════════════════════════════════════ */
+    .subsection { margin-bottom: 40px; }
+    .subsection:last-child { margin-bottom: 0; }
+
+    .subsection-label {
+      font-family: 'Caveat', cursive;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--rose);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .subsection-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(232,49,122,0.5), transparent);
+    }
+
+    /* ════════════════════════════════════
+       GRID DE ITENS COM FOTO
+    ════════════════════════════════════ */
+    .items-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .items-photo-list { display: flex; flex-direction: column; gap: 12px; }
+
+    /* ── CARD COM FOTO ── */
+    .item-card {
+      background: #181818;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .item-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(232,49,122,0.3);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.6), 0 0 0 1px rgba(232,49,122,0.1);
+    }
+
+    .item-card-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      background: #1a1a1a;
+    }
+
+    /* placeholder quando não tem foto */
+    .item-card-img-placeholder {
+      width: 100%; height: 140px;
+      background: linear-gradient(135deg, #1a1a1a, #222222);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem;
+    }
+
+    .item-card-body { padding: 14px 16px; }
+
+    .item-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.02rem; font-weight: 600;
+      color: #ffffff; line-height: 1.25;
+      margin-bottom: 5px;
+    }
+
+    .item-card-volume {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem; color: rgba(255,255,255,0.35);
+    }
+
+    .item-card-desc {
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .item-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px;
+    }
+
+    .item-card-price {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--rose);
+    }
+
+    .item-card-note {
+      font-size: 0.68rem;
+      font-style: italic;
+      color: rgba(232,49,122,0.7);
+      line-height: 1.4;
+    }
+
+    /* ── CARD HORIZONTAL (lista) ── */
+    .item-card.horizontal {
+      display: flex; flex-direction: row;
+      border-radius: 10px;
+    }
+    .item-card.horizontal .item-card-img,
+    .item-card.horizontal .item-card-img-placeholder {
+      width: 110px; height: auto;
+      min-height: 100px;
+      flex-shrink: 0;
+      border-radius: 0;
+    }
+    .item-card.horizontal .item-card-body {
+      flex: 1; padding: 14px 16px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .item-card.horizontal .item-card-footer { margin-top: 8px; }
+
+    /* ── CARD DESTAQUE ── */
+    .item-card.featured {
+      border-color: rgba(232,49,122,0.35);
+      background: linear-gradient(135deg, rgba(232,49,122,0.06) 0%, #181818 50%);
+      box-shadow: 0 2px 16px rgba(232,49,122,0.12), 0 0 0 1px rgba(232,49,122,0.1);
+    }
+    .item-card.featured .item-card-name { color: #ffffff; }
+
+    /* ── OBS ── */
+    .obs-box {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: rgba(232,49,122,0.07);
+      border-left: 3px solid var(--rose);
+      border-radius: 0 6px 6px 0;
+      font-family: 'Caveat', cursive;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ════════════════════════════════════
+       SEPARADOR DECORATIVO
+    ════════════════════════════════════ */
+    .page-turn {
+      height: 20px;
+      background: linear-gradient(180deg, rgba(232,49,122,0.05) 0%, transparent 100%);
+      border-top: 1px solid rgba(232,49,122,0.1);
+    }
+
+    .hand-divider {
+      text-align: center;
+      margin: 28px 0 20px;
+      font-family: 'Caveat', cursive;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.35);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hand-divider::before, .hand-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232,49,122,0.4), transparent);
+    }
+
+    /* ════════════════════════════════════
+       RODAPÉ
+    ════════════════════════════════════ */
+    .nb-footer {
+      padding: 32px 64px 40px 80px;
+      background: #000000;
+      text-align: center;
+      border-top: 1px solid rgba(232,49,122,0.2);
+    }
+
+    .nb-footer-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.4rem; font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 0 30px rgba(232,49,122,0.4);
+    }
+
+    .nb-footer-sub {
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--rose);
+      margin-top: 4px; margin-bottom: 20px;
+    }
+
+    .nb-footer-info {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 2;
+    }
+
+    /* ════════════════════════════════════
+       STICKY NAV FLUTUANTE
+    ════════════════════════════════════ */
+    #floating-nav {
+      position: fixed;
+      top: 24px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      padding: 8px 6px;
+      display: flex; gap: 4px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(232,49,122,0.2);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    #floating-nav.visible { opacity: 1; }
+
+    .fnav-btn {
+      padding: 8px 16px;
+      background: none; border: none;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer; border-radius: 50px;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+    .fnav-btn:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .fnav-btn.active { background: var(--rose); color: #fff; box-shadow: 0 0 16px rgba(232,49,122,0.4); }
+
+    /* ════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .nb-section { padding: 36px 20px 36px 32px; }
+      .cover { padding: 48px 24px 40px 36px; }
+      .index-page { padding: 32px 20px 32px 36px; }
+      .index-list { grid-template-columns: 1fr; }
+      .items-photo-grid { grid-template-columns: 1fr 1fr; }
+      #floating-nav { display: none; }
+      .cover-deco { display: none; }
+      .nb-footer { padding: 32px 24px; }
+    }
+    @media (max-width: 420px) {
+      .items-photo-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ FLOATING NAV ════ -->
+<nav id="floating-nav" aria-label="Navegação rápida">
+  <button class="fnav-btn" onclick="goTo('bqs')" id="fnav-bqs">☕ Quentes</button>
+  <button class="fnav-btn" onclick="goTo('bgs')" id="fnav-bgs">🧊 Geladas</button>
+  <button class="fnav-btn" onclick="goTo('cgs')" id="fnav-cgs">🥤 Cafés</button>
+  <button class="fnav-btn" onclick="goTo('lnc')" id="fnav-lnc">🥐 Lanchinhos</button>
+  <button class="fnav-btn" onclick="goTo('doc')" id="fnav-doc">🍰 Doces</button>
+</nav>
+
+<!-- ════ CADERNO ════ -->
+<div class="notebook" role="main">
+
+  <!-- Espirais -->
+  <div class="spiral" aria-hidden="true" id="spiralMount"></div>
+
+  <!-- ══ CAPA ══ -->
+  <div class="cover">
+    <div class="cover-texture"></div>
+    <div class="cover-lines"></div>
+    <div class="cover-deco" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="16" width="22" height="22" rx="2" stroke="rgba(232,169,106,0.7)" stroke-width="1.5"/>
+        <rect x="18" y="8" width="14" height="14" rx="1.5" stroke="rgba(232,169,106,0.7)" stroke-width="1.3" fill="rgba(232,169,106,0.05)"/>
+        <path d="M24 6 C22 3.5 26 1.5 24 4.5" stroke="rgba(232,169,106,0.6)" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M21 4 C19 1.8 23 0 21 3" stroke="rgba(232,169,106,0.4)" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <p class="cover-label">Café com Variedades</p>
+    <h1 class="cover-title">La <em>Chicra</em></h1>
+    <p class="cover-sub">Um espaço pensado para você se mimar.</p>
+    <p class="cover-address">QE 30, Guará II &nbsp;·&nbsp; Brasília–DF &nbsp;·&nbsp; Aberto às 14h</p>
+  </div>
+
+  <!-- ══ ÍNDICE ══ -->
+  <div class="index-page">
+    <h2>Índice</h2>
+    <ul class="index-list">
+      <li class="index-item">
+        <span class="index-emoji">☕</span>
+        <a href="#bqs">Bebidas Quentes</a>
+        <span class="index-dots"></span>
+      </li>
+      <li class="index-item">
+        <span class="index-emoji">🍫</span>
+        <a href="#bqs">Chocolates & Cappuccinos</a>
+        <span class="index-dots"></span>
+      </li>
+      <li class="index-item">
+        <span class="index-emoji">🧊</span>
+        <a href="#bgs">Bebidas Geladas</a>
+        <span class="index-dots"></span>
+      </li>
+      <li class="index-item">
+        <span class="index-emoji">🫧</span>
+        <a href="#bgs">Sodas & Sucos</a>
+        <span class="index-dots"></span>
+      </li>
+      <li class="index-item">
+        <span class="index-emoji">🥤</span>
+        <a href="#cgs">Cafés Gelados</a>
+        <span class="index-dots"></span>
+      </li>
+      <li class="index-item">
+        <span class="index-emoji">🥐</span>
+        <a href="#lnc">Croissants & Sanduíches</a>
+        <span class="index-dots"></span>
+      </li>
+      <li class="index-item">
+        <span class="index-emoji">🫓</span>
+        <a href="#lnc">Toasts & Cuscuz</a>
+        <span class="index-dots"></span>
+      </li>
+      <li class="index-item">
+        <span class="index-emoji">🍰</span>
+        <a href="#doc">Bolos & Doces</a>
+        <span class="index-dots"></span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="page-turn"></div>
+
+  <!-- ══════════════════════════════════
+       BEBIDAS QUENTES
+  ══════════════════════════════════ -->
+  <section class="nb-section" id="bqs">
+    <span class="section-tab">Quentes</span>
+    <h2 class="nb-section-title"><span class="title-icon">☕</span> Bebidas Quentes</h2>
+    <p class="nb-section-sub">Do espresso ao cappuccino especial, cada xícara com café selecionado.</p>
+
+    <!-- Chás -->
+    <div class="subsection">
+      <p class="subsection-label">Chás</p>
+      <div class="items-photo-list">
+        <div class="item-card horizontal">
+          <img class="item-card-img" src="imgs/cha.png" alt="Chá Blend" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Chá Blend da Casa</p>
+            <p class="item-card-desc">Combinação exclusiva de ervas e especiarias selecionadas — quente, aromático e reconfortante em cada gole.</p>
+            <div class="item-card-footer">
+              <p class="item-card-price">R$ 14,90</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chocolates -->
+    <div class="subsection">
+      <p class="subsection-label">Chocolates</p>
+      <div class="items-photo-list">
+        <div class="item-card horizontal featured">
+          <img class="item-card-img" src="imgs/chocolate_quente.png" alt="Chocolate Quente" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Chocolate Quente Cremoso <span class="item-card-volume">250 ml</span></p>
+            <p class="item-card-desc">Chocolate premium com leite integral, textura aveludada e sabor profundo que abraça a alma.</p>
+            <div class="item-card-footer">
+              <p class="item-card-price">R$ 17,90</p>
+              <p class="item-card-note">+ R$ 2,90 chantilly</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cappuccinos -->
+    <div class="subsection">
+      <p class="subsection-label">Cappuccinos</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/cappuccino.png" alt="Cappuccino Italiano" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Italiano</p>
+            <p class="item-card-desc">Espresso encorpado com espuma velvety e canela — o clássico que nunca sai de moda.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 14,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/cappuccino.png" alt="Cappuccino Chocolate" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Chocolate</p>
+            <p class="item-card-desc">Cappuccino intenso com cacau selecionado — amargor do café e doçura do chocolate.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 14,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/cappuccino.png" alt="Cappuccino Nutella" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Nutella</p>
+            <p class="item-card-desc">Creme de avelãs e chocolate belga sobre espresso — indulgência pura.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/cappuccino.png" alt="Cappuccino Caramelo" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Caramelo à Flor de Sal</p>
+            <p class="item-card-desc">Caramelo artesanal com toque sofisticado de flor de sal — dança perfeita de sabores.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/cappuccino.png" alt="Cappuccino Doce de Leite" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Doce de Leite da Casa</p>
+            <p class="item-card-desc">Com nosso doce de leite artesanal — intenso, caramelizado e irresistível.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cafés da Casa -->
+    <div class="subsection">
+      <p class="subsection-label">Cafés da Casa</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/espresso.png" alt="Espresso" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Espresso</p>
+            <p class="item-card-desc">Concentrado, aromático e cheio de personalidade — a base de tudo.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 6,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/espresso.png" alt="Espresso Duplo" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Espresso Duplo</p>
+            <p class="item-card-desc">O dobro da intensidade para quem não aceita meios-termos.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 6,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/espresso.png" alt="Macchiato" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Espresso Macchiato</p>
+            <p class="item-card-desc">Espresso marcado com nuvem de espuma de leite — força e suavidade.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 11,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/cappuccino.png" alt="Mocha" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Mocha</p>
+            <p class="item-card-desc">Espresso, chocolate e leite vaporizado — rico, sedoso e irresistível.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">☕</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Coado Melitta <span class="item-card-volume">200 ml</span></p>
+            <p class="item-card-desc">Filtro de papel lento e cuidadoso — notas delicadas da torra selecionada.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 13,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">☕</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Coado Melitta <span class="item-card-volume">400 ml</span></p>
+            <p class="item-card-desc">Versão generosa para saborear cada momento com calma.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🫖</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Hario V60 <span class="item-card-volume">200 ml</span></p>
+            <p class="item-card-desc">Funil cônico japonês — complexidade aromática incomparável.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 13,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🫖</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Hario V60 <span class="item-card-volume">400 ml</span></p>
+            <p class="item-card-desc">Notas florais e frutadas que encantam paladar a paladar.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">☕</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Prensa Francesa <span class="item-card-volume">200 ml</span></p>
+            <p class="item-card-desc">Imersão total por 4 min — encorpado, oleoso e profundo.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 13,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">☕</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Prensa Francesa <span class="item-card-volume">400 ml</span></p>
+            <p class="item-card-desc">A versão maior — perfeito para longas e boas conversas.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 16,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/espresso.png" alt="Mokinha" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Mokinha Italiana <span class="item-card-volume">150 ml</span></p>
+            <p class="item-card-desc">Moka italiana sob pressão de vapor — intenso e cheio de caráter.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 11,90</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="obs-box">☘ Leite vegetal ou zero lactose: + R$ 2,90</div>
+    </div>
+  </section>
+
+  <div class="page-turn"></div>
+
+  <!-- ══════════════════════════════════
+       BEBIDAS GELADAS
+  ══════════════════════════════════ -->
+  <section class="nb-section" id="bgs">
+    <span class="section-tab">Geladas</span>
+    <h2 class="nb-section-title"><span class="title-icon">🧊</span> Bebidas Geladas</h2>
+    <p class="nb-section-sub">Chás artesanais, sodas italianas, frappuccinos e sucos para cada momento.</p>
+
+    <div class="subsection">
+      <p class="subsection-label">Chá Gelado</p>
+      <div class="items-photo-list">
+        <div class="item-card horizontal featured">
+          <img class="item-card-img" src="imgs/cha.png" alt="Chá Gelado" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Nosso Chá Gelado da Casa</p>
+            <p class="item-card-desc">Blend exclusivo: hibisco, camomila, capim-santo e limão — refrescante, floral e absolutamente único.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Soda Italiana</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/soda_italiana.png" alt="Soda Maçã Verde" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Maçã Verde</p>
+            <p class="item-card-desc">Efervescente e vibrante com sirope de maçã verde.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/soda_italiana.png" alt="Soda Tangerina" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Tangerina</p>
+            <p class="item-card-desc">Cítrica, aromática e irresistível — frescor em cada bolha.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/soda_italiana.png" alt="Soda Frutas Vermelhas" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Frutas Vermelhas</p>
+            <p class="item-card-desc">Morango, framboesa e amora — bela, sofisticada e deliciosamente ácida.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Frappuccino</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/frappuccino.png" alt="Frappuccino Paçoca" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Paçoca</p>
+            <p class="item-card-desc">Café gelado com creme de paçoca — nostalgia brasileira em experiência premium.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 18,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/frappuccino.png" alt="Frappuccino Ovomaltine" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Ovomaltine</p>
+            <p class="item-card-desc">Cremoso com Ovomaltine crocante — textura irresistível.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 18,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/frappuccino.png" alt="Frappuccino Oreo" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Oreo</p>
+            <p class="item-card-desc">Creme de Oreo e biscoito triturado — para amantes do duo perfeito.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 18,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/frappuccino.png" alt="Frappuccino Amarula" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Amarula</p>
+            <p class="item-card-desc">Com licor de Amarula — frutado, cremoso, final exótico inesquecível.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 22,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Sucos Naturais</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/suco_natural.png" alt="Suco Laranja" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Laranja</p>
+            <p class="item-card-desc">Espremido na hora — vitamina C que faz bem e sabe melhor.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/suco_natural.png" alt="Suco Manga" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Manga</p>
+            <p class="item-card-desc">Polpa de manga madura — tropical e com aquela densidade de fruta fresca.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/suco_natural.png" alt="Suco Abacaxi" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Abacaxi</p>
+            <p class="item-card-desc">Refrescante e aromático — o clássico que sempre cai bem.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/suco_natural.png" alt="Suco Abacaxi Hortelã" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Abacaxi com Hortelã</p>
+            <p class="item-card-desc">Dupla de dar inveja — sinfonia de frescor incomparável.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/suco_natural.png" alt="Suco Limão" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Limão</p>
+            <p class="item-card-desc">Ácido, gelado e perfeito — revitaliza em qualquer dia.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hand-divider">outros</div>
+    <div class="items-photo-grid">
+      <div class="item-card"><div class="item-card-img-placeholder">💧</div><div class="item-card-body"><p class="item-card-name">Água com Gás</p><p class="item-card-desc">Gasosa e refrescante.</p><div class="item-card-footer"><p class="item-card-price">R$ 4,90</p></div></div></div>
+      <div class="item-card"><div class="item-card-img-placeholder">💧</div><div class="item-card-body"><p class="item-card-name">Água sem Gás</p><p class="item-card-desc">Pura e natural.</p><div class="item-card-footer"><p class="item-card-price">R$ 3,90</p></div></div></div>
+      <div class="item-card"><div class="item-card-img-placeholder">🥤</div><div class="item-card-body"><p class="item-card-name">Coca-Cola</p><p class="item-card-desc">O clássico de sempre, bem gelado.</p><div class="item-card-footer"><p class="item-card-price">R$ 6,90</p></div></div></div>
+      <div class="item-card"><div class="item-card-img-placeholder">🥤</div><div class="item-card-body"><p class="item-card-name">Coca-Cola Zero</p><p class="item-card-desc">Sabor icônico, sem açúcar.</p><div class="item-card-footer"><p class="item-card-price">R$ 6,90</p></div></div></div>
+      <div class="item-card"><div class="item-card-img-placeholder">🟢</div><div class="item-card-body"><p class="item-card-name">Guaraná</p><p class="item-card-desc">Tipicamente brasileiro.</p><div class="item-card-footer"><p class="item-card-price">R$ 6,90</p></div></div></div>
+    </div>
+  </section>
+
+  <div class="page-turn"></div>
+
+  <!-- ══════════════════════════════════
+       CAFÉS GELADOS
+  ══════════════════════════════════ -->
+  <section class="nb-section" id="cgs">
+    <span class="section-tab">Cafés Gelados</span>
+    <h2 class="nb-section-title"><span class="title-icon">🥤</span> Cafés Gelados</h2>
+    <p class="nb-section-sub">Do cold brew extraído a frio ao affogato irresistível.</p>
+    <div class="items-photo-grid">
+      <div class="item-card featured">
+        <img class="item-card-img" src="imgs/iced_latte.png" alt="Iced Latte" loading="lazy" />
+        <div class="item-card-body">
+          <p class="item-card-name">Iced Latte</p>
+          <p class="item-card-desc">Espresso duplo sobre gelo com leite cremoso — suave, refrescante, elegante.</p>
+          <div class="item-card-footer"><p class="item-card-price">R$ 14,90</p></div>
+        </div>
+      </div>
+      <div class="item-card">
+        <img class="item-card-img" src="imgs/iced_latte.png" alt="Coldbrew" loading="lazy" />
+        <div class="item-card-body">
+          <p class="item-card-name">Coldbrew Puro</p>
+          <p class="item-card-desc">Extraído a frio por 12h — suave, sem acidez, dulçor natural.</p>
+          <div class="item-card-footer"><p class="item-card-price">R$ 11,90</p></div>
+        </div>
+      </div>
+      <div class="item-card featured">
+        <img class="item-card-img" src="imgs/iced_latte.png" alt="Coldbrew Especial" loading="lazy" />
+        <div class="item-card-body">
+          <p class="item-card-name">Coldbrew Especial</p>
+          <p class="item-card-desc">Cold brew com blend exclusivo — experiência que eleva o nível.</p>
+          <div class="item-card-footer"><p class="item-card-price">R$ 16,90</p></div>
+        </div>
+      </div>
+      <div class="item-card">
+        <img class="item-card-img" src="imgs/iced_latte.png" alt="Espresso Maltine" loading="lazy" />
+        <div class="item-card-body">
+          <p class="item-card-name">Espresso Maltine</p>
+          <p class="item-card-desc">Espresso gelado com maltine — intenso, nostálgico e viciante.</p>
+          <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+        </div>
+      </div>
+      <div class="item-card">
+        <img class="item-card-img" src="imgs/iced_latte.png" alt="Espresso Tônica" loading="lazy" />
+        <div class="item-card-body">
+          <p class="item-card-name">Espresso Tônica</p>
+          <p class="item-card-desc">Espresso sobre tônica gelada — borbulhante, amargo e refrescante.</p>
+          <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+        </div>
+      </div>
+      <div class="item-card featured">
+        <div class="item-card-img-placeholder">🍨</div>
+        <div class="item-card-body">
+          <p class="item-card-name">Affogato</p>
+          <p class="item-card-desc">Bola de sorvete de creme afogada em espresso quente — contraste que derrete tudo.</p>
+          <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-turn"></div>
+
+  <!-- ══════════════════════════════════
+       LANCHINHOS
+  ══════════════════════════════════ -->
+  <section class="nb-section" id="lnc">
+    <span class="section-tab">Lanchinhos</span>
+    <h2 class="nb-section-title"><span class="title-icon">🥐</span> Lanchinhos</h2>
+    <p class="nb-section-sub">Salgados, cuscuz, toasts, croissants e sanduíches especiais.</p>
+
+    <div class="subsection">
+      <p class="subsection-label">Para Beliscar</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/pao_de_queijo.png" alt="Pão de Queijo" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Pão de Queijo <span class="item-card-volume">porção 4 un</span></p>
+            <p class="item-card-desc">Crocante por fora, derretendo por dentro — fresquinho e irresistível.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🍗</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Coxinha de Frango <span class="item-card-volume">porção 5 un</span></p>
+            <p class="item-card-desc">Dourado, crocante e com recheio generoso de frango.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 4,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🧆</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Salgados Assados Variados <span class="item-card-volume">porção 8 un</span></p>
+            <p class="item-card-desc">Seleção com recheios variados — leveza sem abrir mão do sabor.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 24,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Cuscuz</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/cuscuz.png" alt="Cuscuz Manteiga" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Com Manteiga</p>
+            <p class="item-card-desc">Conforto nordestino — fresquinho com manteiga no ponto.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 11,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/cuscuz.png" alt="Cuscuz Ovo Queijo" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Com Ovo e Queijo</p>
+            <p class="item-card-desc">Ovo caipira e queijo derretido — nutritivo e delicioso.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/cuscuz.png" alt="Cuscuz Turbinado" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Turbinado ✦ Especial</p>
+            <p class="item-card-desc">Tomate confitado, ovo, pesto, muçarela e bacon — o cuscuz que virou experiência gastronômica.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 25,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Toasts</p>
+      <div class="items-photo-grid">
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/toast_especial.png" alt="Toast Especial" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Toast Especial</p>
+            <p class="item-card-desc">Cream cheese, ovo mexido, bacon crocante e tomate seco — café da manhã elevado ao máximo.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 24,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/toast_especial.png" alt="Toast Entradinha" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Toast Entradinha</p>
+            <p class="item-card-desc">Queijo com geleia de damasco ou morango — doce e sofisticado.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/toast_especial.png" alt="Toast Queijo Tomate" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Toast de Queijo com Tomate Confitado</p>
+            <p class="item-card-desc">Queijo gratinado e tomate confitado em azeite — elegante.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Empanadas Argentinas</p>
+      <div class="items-photo-list">
+        <div class="item-card horizontal">
+          <div class="item-card-img-placeholder">🫔</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Empanada Argentina</p>
+            <p class="item-card-desc">Massa dourada com sabores autênticos portenhos — consulte os sabores disponíveis do dia.</p>
+            <div class="item-card-footer">
+              <p class="item-card-price">R$ 15,90</p>
+              <p class="item-card-note">Sabores: consulte nossa equipe</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Crepioca & Tapioca</p>
+      <div class="items-photo-grid">
+        <div class="item-card"><div class="item-card-img-placeholder">🫓</div><div class="item-card-body"><p class="item-card-name">Com Manteiga</p><p class="item-card-desc">Leve, sem glúten e deliciosa — a simples que agrada sempre.</p><div class="item-card-footer"><p class="item-card-price">R$ 11,90</p></div></div></div>
+        <div class="item-card"><div class="item-card-img-placeholder">🫓</div><div class="item-card-body"><p class="item-card-name">Queijo Muçarela e Presunto</p><p class="item-card-desc">Queijo derretido e presunto suíço — o clássico saudável.</p><div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div></div></div>
+        <div class="item-card"><div class="item-card-img-placeholder">🫓</div><div class="item-card-body"><p class="item-card-name">Queijo Minas, Peru e Tomate Seco</p><p class="item-card-desc">A versão gourmet em harmonia perfeita.</p><div class="item-card-footer"><p class="item-card-price">R$ 20,90</p></div></div></div>
+        <div class="item-card featured"><div class="item-card-img-placeholder">🫓</div><div class="item-card-body"><p class="item-card-name">Muçarela, Tomate Seco, Peru e Rúcula</p><p class="item-card-desc">A versão mais completa — rúcula fresca pra fechar com sabor.</p><div class="item-card-footer"><p class="item-card-price">R$ 22,90</p></div></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Croissants</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/croissant.png" alt="Croissant Presunto e Queijo" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Presunto e Queijo</p>
+            <p class="item-card-desc">Massa folhada crocante com presunto e queijo derretido.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/croissant.png" alt="Croissant Peru Minas" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Peito de Peru, Queijo Minas e Tomate Confitado</p>
+            <p class="item-card-desc">Leve, saboroso e delicadamente gourmet.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 21,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/croissant.png" alt="Croissant Bechamel" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Peito de Peru com Bechamel</p>
+            <p class="item-card-desc">Molho bechamel artesanal — cremoso e reconfortante.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 19,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/croissant.png" alt="Croissant Parma" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Presunto de Parma, Tomate e Rúcula</p>
+            <p class="item-card-desc">O mais sofisticado da casa — parma curado e rúcula sobre croissant superior.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 31,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/croissant.png" alt="Croissant Nutella" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Nutella e Castanhas</p>
+            <p class="item-card-desc">Nutella generosa com castanhas tostadas — indulgência que se repete.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 21,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/croissant.png" alt="Croissant Goiabada" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Queijo Minas com Goiabada</p>
+            <p class="item-card-desc">O clássico brasileiro em forma de croissant. Tudo a ver!</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 21,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Sanduíches Especiais</p>
+      <div class="items-photo-list">
+        <div class="item-card horizontal featured">
+          <img class="item-card-img" src="imgs/sanduiche_frango.png" alt="Sanduíche de Frango" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Sanduíche de Frango</p>
+            <p class="item-card-desc">Ciabatta, muçarela, frango marinado 12h em molho especial, alface, tomate, picles de cebola roxa e maionese de páprica.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 32,90</p></div>
+          </div>
+        </div>
+        <div class="item-card horizontal featured">
+          <img class="item-card-img" src="imgs/sanduiche_frango.png" alt="Sanduíche Pastrami" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Sanduíche de Pastrami</p>
+            <p class="item-card-desc">Fermentação natural, cream cheese, tomate seco, pastrami de charcutaria holandesa, pesto, mostarda e rúcula.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 35,90</p></div>
+          </div>
+        </div>
+        <div class="item-card horizontal">
+          <div class="item-card-img-placeholder">🌿</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Sanduíche Vegano</p>
+            <p class="item-card-desc">Fermentação natural, abobrinha grelada, picles, tomate confitado, rúcula e mostarda com ágave — 100% plant-based.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 28,90</p></div>
+          </div>
+        </div>
+        <div class="item-card horizontal">
+          <div class="item-card-img-placeholder">🥪</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Croque Monsieur</p>
+            <p class="item-card-desc">Fermentação natural, bechamel artesanal, presunto e muçarela gratinada — o bistrô parisiense na La Chicra.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 28,90</p></div>
+          </div>
+        </div>
+        <div class="item-card horizontal featured">
+          <img class="item-card-img" src="imgs/toast_especial.png" alt="Ovo à Poché" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Sanduíche de Ovo à Poché</p>
+            <p class="item-card-desc">Pão caseiro, ovo à poché com gema escorrendo, bacon e patê de abacate — o brunch que você merece.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 23,90</p></div>
+          </div>
+        </div>
+        <div class="item-card horizontal">
+          <div class="item-card-img-placeholder">🥪</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Tosta-Mista Simples</p>
+            <p class="item-card-desc">Pão de forma caseiro, presunto e queijo tostado — o clássico que nunca sai de moda.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card horizontal">
+          <div class="item-card-img-placeholder">🥪</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Turbinado</p>
+            <p class="item-card-desc">Pão caseiro, ovo, queijo minas, peito de peru e tomate confitado — completo e cheio de personalidade.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 21,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-turn"></div>
+
+  <!-- ══════════════════════════════════
+       BOLOS & DOCES
+  ══════════════════════════════════ -->
+  <section class="nb-section" id="doc">
+    <span class="section-tab">Doces</span>
+    <h2 class="nb-section-title"><span class="title-icon">🍰</span> Bolos & Doces</h2>
+    <p class="nb-section-sub">Sobremesas que transformam cada visita em memória afetiva.</p>
+
+    <div class="subsection">
+      <p class="subsection-label">Sobremesas</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <img class="item-card-img" src="imgs/brownie.png" alt="Brownie" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Brownie</p>
+            <p class="item-card-desc">Intenso, denso e fudgy — feito com amor e da maneira que precisa ser.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 11,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/brownie.png" alt="Brownie Caramelo e Sorvete" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Brownie com Caramelo à Flor de Sal e Sorvete</p>
+            <p class="item-card-desc">Brownie quente, caramelo e sorvete de creme — sobremesa que vira memória.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/brownie.png" alt="Toast de Churros" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Toast de Churros</p>
+            <p class="item-card-desc">Caramelo à flor de sal, sorvete e canela açucarada — o churro reinventado.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/brownie.png" alt="Sobremesa da Terra" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Sobremesa da Terra</p>
+            <p class="item-card-desc">Creme de banana da terra, brownie, sorvete, castanhas e canela — o Brasil em forma de sobremesa.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🥮</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Pastel de Belém</p>
+            <p class="item-card-desc">Pastel de nata português — creme de gema sedoso em massa crocante.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 8,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/torta_banoffee.png" alt="Torta de Banoffee" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Torta de Banoffee ✦</p>
+            <p class="item-card-desc">Biscoito amanteigado, banana, doce de leite caseiro e chantilly — a torta que roubou nosso coração.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <p class="subsection-label">Bolos Caseiros</p>
+      <div class="items-photo-grid">
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🍊</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Bolo de Laranja</p>
+            <p class="item-card-desc">Fofo, úmido e com perfume de laranja. Opção de calda cítrica.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 13,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🥕</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Bolo de Cenoura</p>
+            <p class="item-card-desc">Macio e fofinho — com opção de cobertura ganache de chocolate.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 15,90</p></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-card-img-placeholder">🌽</div>
+          <div class="item-card-body">
+            <p class="item-card-name">Bolo de Milho</p>
+            <p class="item-card-desc">Textura rústica e adocicada. Opção de cobertura de goiabada.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 14,90</p></div>
+          </div>
+        </div>
+        <div class="item-card featured">
+          <img class="item-card-img" src="imgs/bolo_cafe.png" alt="Bolo de Café" loading="lazy" />
+          <div class="item-card-body">
+            <p class="item-card-name">Bolo de Café ✦</p>
+            <p class="item-card-desc">Chocolate meio amargo, cacau e redução de café — para os verdadeiros amantes.</p>
+            <div class="item-card-footer"><p class="item-card-price">R$ 17,90</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RODAPÉ ══ -->
+  <div class="nb-footer">
+    <p class="nb-footer-title">La Chicra</p>
+    <p class="nb-footer-sub">Café com Variedades</p>
+    <p class="nb-footer-info">
+      QE 30, Guará II &nbsp;·&nbsp; Brasília–DF<br>
+      Aberto a partir das 14h
+    </p>
+    <p style="margin-top:20px; font-size:.68rem; color:rgba(255,255,255,0.18);">
+      Valores e disponibilidade sujeitos a alteração. Consulte nossa equipe.
+    </p>
+  </div>
+
+</div><!-- /notebook -->
+
+<script>
+  // ── Gerar espirais
+  const mount = document.getElementById('spiralMount');
+  const nb = document.querySelector('.notebook');
+  const nbH = nb.offsetHeight;
+  for (let y = 36; y < nbH; y += 48) {
+    const r = document.createElement('div');
+    r.className = 'spiral-ring';
+    r.style.top = y + 'px';
+    mount.appendChild(r);
+  }
+
+  // ── Floating nav
+  const fnav = document.getElementById('floating-nav');
+  const sections = document.querySelectorAll('.nb-section');
+
+  window.addEventListener('scroll', () => {
+    fnav.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.fnav-btn').forEach(b => b.classList.remove('active'));
+        const btn = document.getElementById('fnav-' + e.target.id);
+        if (btn) btn.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -65% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+
+  function goTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
